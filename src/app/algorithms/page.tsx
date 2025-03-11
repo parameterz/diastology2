@@ -1,8 +1,9 @@
-// algorithms/page.tsx
+// src/app/algorithms/page.tsx
 'use client';
 
 import algorithms from '@/algorithms';
 import Link from 'next/link';
+
 
 // Define the display order for algorithms
 const algorithmDisplayOrder = [
