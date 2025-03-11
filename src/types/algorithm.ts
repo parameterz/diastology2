@@ -11,7 +11,8 @@ export type ResultKey =
   | 'impaired-normal' 
   | 'impaired-elevated' 
   | 'indeterminate'
-  | 'insufficient_info';
+  | 'insufficient_info'
+  | 'exclude';
 
 // Option displayed to the user
 export interface Option {

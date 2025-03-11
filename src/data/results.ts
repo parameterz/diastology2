@@ -46,6 +46,11 @@ export const results: Record<ResultKey, Result> = {
         message: 'Insufficient Information',
         class: 'result-impaired',
         description: 'There is insufficient information to determine diastolic function.'
-    }    
+    },
+    'exclude': {
+        message: 'Exclude Diastolic Function',
+        class: 'result-impaired',
+        description: 'Diastolic function should be excluded from the interpretation.'
+    }
   // ... other results
 };

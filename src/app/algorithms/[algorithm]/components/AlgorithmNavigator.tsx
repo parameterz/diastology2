@@ -40,7 +40,7 @@ export function AlgorithmNavigator({ algorithmId, modeId }: NavigatorProps) {
     return (
       <div className="p-4 bg-red-50 border border-red-200 text-red-700 dark:bg-red-900/20 dark:border-red-800 dark:text-red-400 rounded-lg">
         <h2 className="text-xl font-semibold mb-2">Algorithm Not Found</h2>
-        <p>Sorry, we couldn't find the algorithm you're looking for.</p>
+        <p>Sorry, we couldn&apos;t find the algorithm you&apos;re looking for.</p>
       </div>
     )
   }

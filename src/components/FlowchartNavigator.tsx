@@ -3,12 +3,13 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, Check, AlertCircle, ArrowLeft, RotateCcw, Info } from 'lucide-react';
+import { Check, AlertCircle, ArrowLeft, RotateCcw, Info } from 'lucide-react';
 import algorithms from '@/algorithms';
-import { Node, DecisionNode, EvaluatorNode, ResultNode, OptionValue } from '@/types/algorithm';
+import { OptionValue, Result, AlgorithmMode } from '@/types/algorithm';
 
 // Dynamic import to avoid SSR issues
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
+import { AlgorithmNavigator } from '@/services/AlgorithmNavigator';
 
 interface FlowchartNavigatorProps {
   algorithmId: string;
@@ -18,20 +19,19 @@ interface FlowchartNavigatorProps {
 // Create a component that only renders on the client side
 const FlowchartNavigator: React.FC<FlowchartNavigatorProps> = ({ algorithmId, modeId }) => {
   // State for navigator
-  const [navigator, setNavigator] = useState<any>(null);
+  const [navigator, setNavigator] = useState<AlgorithmNavigator | null>(null);
   
   // Track visible nodes and their state
   const [visibleNodes, setVisibleNodes] = useState<string[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
   const [currentNodeId, setCurrentNodeId] = useState<string>('');
   const [selections, setSelections] = useState<Record<string, { value: OptionValue, display: string }>>({});
   
   // Result state
-  const [result, setResult] = useState<any>(null);
-  const [citation, setCitation] = useState<any>(null);
-  
+  const [result, setResult] = useState<Result | null>(null);  
   // Mode info
-  const [currentMode, setCurrentMode] = useState<any>(null);
+  const [currentMode, setCurrentMode] = useState<AlgorithmMode | null>(null);
   const [hasMultipleModes, setHasMultipleModes] = useState<boolean>(false);
   
   // Track if the last node we processed was an evaluator
@@ -43,6 +43,8 @@ const FlowchartNavigator: React.FC<FlowchartNavigatorProps> = ({ algorithmId, mo
 
   // Initialize navigator on client-side only
   useEffect(() => {
+    // Reset result state when algorithm changes
+    setResult(null);
     // Import the AlgorithmNavigator dynamically to avoid SSR issues
     const initNavigator = async () => {
       try {
@@ -72,7 +74,6 @@ const FlowchartNavigator: React.FC<FlowchartNavigatorProps> = ({ algorithmId, mo
         setCurrentNodeId(startNode.id);
         setVisibleNodes([startNode.id]);
         setExpandedNodes(new Set([startNode.id]));
-        setCitation(nav.getCitation());
         setIsLoading(false);
       } catch (err) {
         console.error("Error initializing navigator:", err);
@@ -235,7 +236,6 @@ const FlowchartNavigator: React.FC<FlowchartNavigatorProps> = ({ algorithmId, mo
       const node = algorithms[algorithmId].nodes[id];
       if (!node) return null;
 
-      const isExpanded = expandedNodes.has(id);
       const isActive = currentNodeId === id;
       const selectedOption = selections[id];
       const isCompleted = !!selectedOption;
