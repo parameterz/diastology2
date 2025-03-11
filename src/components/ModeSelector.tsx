@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Algorithm, AlgorithmMode } from '@/types/algorithm';
 import algorithms from '@/algorithms';
 
 interface ModeSelectorProps {

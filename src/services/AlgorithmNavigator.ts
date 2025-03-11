@@ -1,11 +1,12 @@
 // src/services/AlgorithmNavigator.ts - Navigation service
 import {
   Algorithm,
+  Citation,
   Node,
-  DecisionNode,
-  EvaluatorNode,
-  ResultNode,
-  ResultKey,
+  // DecisionNode,
+  // EvaluatorNode,
+  // ResultNode,
+  // ResultKey,
   OptionValue,
   Result,
 } from "../types/algorithm";
@@ -139,8 +140,9 @@ public getCurrentAlgorithm(): Algorithm {
       nextNodeId = currentNode.evaluate(this.state.answers);
     } else {
       // This ensures TypeScript knows we've covered all possible node types
-      const exhaustiveCheck: never = currentNode;
-      throw new Error(`Unexpected node type: ${(currentNode as any).type}`);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const exhaustiveCheck: never = currentNode;      
+      throw new Error(`Unexpected node type: ${(currentNode as Node).type}`);
     }
 
     // Update current node
@@ -199,11 +201,15 @@ public getCurrentAlgorithm(): Algorithm {
   public deserializeState(serializedState: string): void {
     try {
       this.state = JSON.parse(serializedState);
-    } catch (error) {
-      throw new Error("Failed to deserialize navigation state");
+    } catch (error: unknown) {
+      // Properly type-check before accessing properties
+      if (error instanceof Error) {
+        throw new Error(`Failed to deserialize navigation state: ${error.message}`);
+      } else {
+        throw new Error('Failed to deserialize navigation state');
+      }
     }
   }
-
   // Check if can go back
   public canGoBack(): boolean {
     return this.state.history.length > 0;
@@ -222,7 +228,7 @@ public getCurrentAlgorithm(): Algorithm {
   }
 
 // Get the citation for the current algorithm
-public getCitation(): any {
+public getCitation(): Citation | null {
     if (!this.state.currentAlgorithmId) {
       return null; // Return null instead of throwing an error
     }
