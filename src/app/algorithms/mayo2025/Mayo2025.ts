@@ -1,4 +1,4 @@
-// src/algorithms/Young2025.ts - Young et al. 2025 Diastolic Function Algorithm
+// src/app/algorithms/[algorithm]/Young2025.ts - Young et al. 2025 Diastolic Function Algorithm
 import {
   Algorithm,
   DecisionNode,
