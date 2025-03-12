@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import { ThemeProvider } from "next-themes";
 import Link from "next/link";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
+import versionInfo from "@/config/version";
 
 export const metadata = {
   title: "Diastolic Assessment Navigator",
@@ -22,7 +23,7 @@ export default function RootLayout({
             <div className="container mx-auto flex items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
               <Link href="/">
                 <h1 className="text-2xl font-bold md:text-3xl hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                  Diastolic Assessment Navigator
+                  Diastolic Algorithm Navigator
                 </h1>
               </Link>
               <div className="flex items-center">
@@ -37,8 +38,12 @@ export default function RootLayout({
 
           <footer className="mt-auto border-t border-gray-200 py-6 text-center text-sm text-gray-600 dark:border-dark-600 dark:text-gray-400">
             <div className="container mx-auto px-4">
-              <p>Diastolic Assessment Navigator</p>
-              <p>Dan Dyar, MA, ACS, RDCS, FASE © {new Date().getFullYear()}</p>
+              <p>Diastolic Algorithm Navigator</p>
+              <p className="mt-2 text-xs">
+                Version {versionInfo.version} (Build {versionInfo.buildNumber})
+                • {versionInfo.buildDate}
+              </p>              
+              <p className="mt-2" id="copyright">Dan Dyar, MA, ACS, RDCS, FASE © {new Date().getFullYear()}</p>
               <p className="mt-2">
                 <a
                   href="https://www.linkedin.com/in/dan-dyar-ma-acs-rdcs-ae-pe-fe-fase-6387b448/"
@@ -57,6 +62,7 @@ export default function RootLayout({
                   Connect on LinkedIn
                 </a>
               </p>
+
             </div>
           </footer>
         </ThemeProvider>
