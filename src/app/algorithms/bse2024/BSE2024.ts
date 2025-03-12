@@ -185,8 +185,8 @@ const bse2024Algorithm: Algorithm = {
       'laStrain',
       'What is the LA Strain?',
       [
-        {value: 'positive', text: 'pump strain < 14% OR reservoir strain < 30%'},
-        {value: 'negative', text: 'pump strain ≥ 14% OR reservoir strain ≥ 30%'}
+        {value: 'negative', text: 'pump strain ≥ 14% OR reservoir strain ≥ 30%'},
+        {value: 'positive', text: 'pump strain < 14% OR reservoir strain < 30%'}
       ],
       {
         'positive': 'lars',
@@ -198,8 +198,8 @@ const bse2024Algorithm: Algorithm = {
       'lars',
       'More specifically, What is the LA reservoir strain (LARS)?',
       [
-        {value: 'positive', text: 'LARS < 18%'},
-        {value: 'negative', text: 'LARS ≥ 18%'}
+        {value: 'negative', text: 'LARS ≥ 18%'},
+        {value: 'positive', text: 'LARS < 18%'}
       ],
       {
         'positive': 'resultImpairedElevated',
@@ -302,8 +302,8 @@ const bse2024Algorithm: Algorithm = {
       'dysfunctionLaStrain',
       'What about the LA strain?',
       [
-        {value: 'positive', text: 'LARS < 18% or Pump Strain < 8%'},
         {value: 'negative', text: 'LARS ≥ 24% or Pump Strain ≥ 14%'},
+        {value: 'positive', text: 'LARS < 18% or Pump Strain < 8%'},
         {value: 'intermediate', text: 'LARS or Pump Strain is between these'}
       ],
       {
@@ -330,8 +330,8 @@ const bse2024Algorithm: Algorithm = {
       'pvSDRatio',
       'What is the pulmonary vein S/D ratio?',
       [
-        {value: 'positive', text: 'S/D ratio < 1'},
-        {value: 'negative', text: 'S/D ratio ≥ 1'}
+        {value: 'negative', text: 'S/D ratio ≥ 1'},
+        {value: 'positive', text: 'S/D ratio < 1'}
       ],
       {
         'positive': 'resultImpairedElevated',
@@ -356,8 +356,8 @@ const bse2024Algorithm: Algorithm = {
       'mvEDecelTime',
       'What is the MV E decel. time?',
       [
-        {value: 'positive', text: 'E Decel time < 150 ms'},
-        {value: 'negative', text: 'E Decel time ≥ 150 ms'}
+        {value: 'negative', text: 'E Decel time ≥ 150 ms'},
+        {value: 'positive', text: 'E Decel time < 150 ms'}
       ],
       {
         'positive': 'resultImpairedElevated',
@@ -396,8 +396,8 @@ const bse2024Algorithm: Algorithm = {
       'mvEDecelTimeAF',
       'What is the MV E decel. time?',
       [
-        {value: 'positive', text: '≤ 160 ms'},
         {value: 'negative', text: '> 160 ms'},
+        {value: 'positive', text: '≤ 160 ms'},
         {value: 'unavailable', text: 'Unavailable'}
       ],
       {
@@ -439,8 +439,8 @@ const bse2024Algorithm: Algorithm = {
       'afibStep2',
       'LA Reservoir Strain?',
       [
-        {value: 'positive', text: 'LARS < 16% '},
         {value: 'negative', text: 'LARS ≥ 16%'},
+        {value: 'positive', text: 'LARS < 16% '},
         {value: 'unavailable', text: 'Unavailable'}
       ],
       {
@@ -465,8 +465,8 @@ const bse2024Algorithm: Algorithm = {
       'afibPvSDRatio',
       'What is the pulmonary vein S/D ratio?',
       [
-        {value: 'positive', text: 'S/D ratio < 1'},
         {value: 'negative', text: 'S/D ratio ≥ 1'},
+        {value: 'positive', text: 'S/D ratio < 1'},
         {value: 'unavailable', text: 'Unavailable'}
       ],
       {
