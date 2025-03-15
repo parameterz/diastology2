@@ -73,7 +73,7 @@ export default async function Page(props: PageProps) {
     const markdownContent = result.content;
 
     return (
-      <div className="space-y-8">
+      <div className="space-y-6">
         {/* Algorithm Summary Card - Contains title, description, a brief intro */}
         <AlgorithmSummary
           title={data.title}
@@ -82,17 +82,24 @@ export default async function Page(props: PageProps) {
         
         {/* On mobile: Navigator first, then content */}
         <div className="block lg:hidden">
-          <div className="mb-8">
+          <div className="mb-6">
             <AlgorithmNavigator 
               algorithmId={algorithm} 
               modeId={mode}
             />
           </div>
           
-          <div className="mb-8">
-            <AlgorithmContent 
-              content={markdownContent}
-            />
+          <div className="mb-6">
+            <details className="bg-white dark:bg-dark-700 rounded-lg shadow">
+              <summary className="p-4 font-medium cursor-pointer">
+                View Algorithm Description
+              </summary>
+              <div className="p-4 pt-0 border-t dark:border-dark-600">
+                <AlgorithmContent 
+                  content={markdownContent}
+                />
+              </div>
+            </details>
           </div>
         </div>
         

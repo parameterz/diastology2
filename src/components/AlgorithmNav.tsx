@@ -53,10 +53,10 @@ const AlgorithmNav = () => {
         <h2 className="text-lg font-semibold">Algorithms</h2>
         <button 
           onClick={toggleMenu}
-          className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-dark-600"
+          className="p-3 rounded-md hover:bg-gray-100 dark:hover:bg-dark-600"
           aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
         >
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
@@ -72,22 +72,22 @@ const AlgorithmNav = () => {
                 <div>
                   {/* Algorithm header - clickable on mobile */}
                   <div 
-                    className="flex justify-between items-center p-2 hover:bg-gray-50 dark:hover:bg-dark-600 cursor-pointer"
+                    className="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-dark-600 cursor-pointer"
                     onClick={() => toggleAlgoExpansion(algo.id)}
                   >
                     <span className="font-medium">{algo.name}</span>
                     <span className="lg:hidden">
-                      {expandedAlgo === algo.id ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                      {expandedAlgo === algo.id ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                     </span>
                   </div>
                   
                   {/* Algorithm modes - always visible on desktop, toggleable on mobile */}
-                  <div className={`pl-4 space-y-1 ${(expandedAlgo === algo.id || pathname.includes(`/algorithms/${algo.id}`)) ? 'block' : 'hidden lg:block'}`}>
+                  <div className={`pl-4 space-y-2 ${(expandedAlgo === algo.id || pathname.includes(`/algorithms/${algo.id}`)) ? 'block' : 'hidden lg:block'}`}>
                     {algo.modes.map((mode) => (
                       <Link
                         key={mode.id}
                         href={`/algorithms/${algo.id}?mode=${mode.id}`}
-                        className={`block py-1 px-2 text-sm rounded ${
+                        className={`block py-2 px-3 text-sm rounded-lg ${
                           pathname === `/algorithms/${algo.id}` && searchParams.get('mode') === mode.id
                             ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400'
                             : 'hover:bg-gray-50 dark:hover:bg-dark-600'
@@ -103,7 +103,7 @@ const AlgorithmNav = () => {
                 // Algorithm with single mode or no modes
                 <Link
                   href={`/algorithms/${algo.id}${algo.modes && algo.modes.length === 1 ? `?mode=${algo.modes[0].id}` : ''}`}
-                  className={`block p-2 ${
+                  className={`block p-3 ${
                     pathname === `/algorithms/${algo.id}` && (!algo.modes || algo.modes.length <= 1 || !searchParams.get('mode'))
                       ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400'
                       : 'hover:bg-gray-50 dark:hover:bg-dark-600'
@@ -120,5 +120,6 @@ const AlgorithmNav = () => {
     </nav>
   );
 }
+
 
 export default AlgorithmNav;
